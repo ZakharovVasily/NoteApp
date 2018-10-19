@@ -9,7 +9,7 @@ namespace NoteApp
     /// <summary>
     /// Перечисления категорий заметок
     /// </summary>
-    enum CategoriesNotes
+    public enum NoteCategory
     {
         Job,
         House,

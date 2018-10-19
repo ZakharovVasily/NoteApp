@@ -10,7 +10,6 @@ namespace NoteApp
     {
         static void Main(string[] args)
         {
-            Console.Write("Hello ");
         }
     }
 }

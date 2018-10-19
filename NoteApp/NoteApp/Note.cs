@@ -16,27 +16,51 @@ namespace NoteApp
         /// </summary>
         public string Title;
 
-        /// <summary>
-        /// Категория заметки
-        /// </summary>
-        public string NoteCategory;
-
-        /// <summary>
+         /// <summary>
         /// Текст в заметке
         /// </summary>
         public string Text;
+
+        /// <summary>
+        /// Категория заметки
+        /// </summary>
+        private NoteCategory _category;
+
+        public NoteCategory Category
+        {
+            set { _category = value; }
+            get { return _category; }
+        }     
 
         /// <summary>
         /// Время и дата создания заметки
         /// </summary>
         private DateTime _timeCreation;
 
+        public DateTime TimeCreation
+        {
+            get { return _timeCreation;  }
+        }
+
         /// <summary>
         /// Время и дата последнего изменения заметки
         /// </summary>
         private DateTime _timeModified;
 
+        public DateTime TimeModified
+        {
+            set { _timeModified = value; }
+            get { return _timeModified; }
+        }
 
-        public Note(){}
+
+        public Note()
+        {
+            Title = "";
+            Text = "";
+            _category = NoteCategory.Different;
+            _timeCreation = DateTime.Now;
+            _timeModified = DateTime.Now;
+        }
     }
 }
