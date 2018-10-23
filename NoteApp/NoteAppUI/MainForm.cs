@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -15,16 +8,21 @@ namespace NoteAppUI
     {
         public NoteApp.Project pr = new NoteApp.Project();
 
+        //public NoteApp.ManagerProject pr = new NoteApp.ManagerProject();
+
         public MainForm()
         {
             InitializeComponent();
 
             ClearAll();
-
+            
+            
             pr.ChangeNote(null, "Название1", NoteApp.NoteCategory.Different, "Текст1", DateTime.Now, DateTime.Now);
             ListBoxNote.Items.Add(pr._note[pr.CountNote].Title);
             pr.ChangeNote(null, "Название2", NoteApp.NoteCategory.Documents,"Текст2", DateTime.Now, DateTime.Now);
             ListBoxNote.Items.Add(pr._note[pr.CountNote].Title);
+
+            //pr.UpdateData();
 
             ListBoxNote.SelectedIndex = 0;
             AddCategoryBox();
@@ -53,7 +51,10 @@ namespace NoteAppUI
         {
             if (ListBoxNote.Items.Count > 1)
             {
-                WriteTextBox.Text = pr._note[ListBoxNote.SelectedIndex].Text;
+                //WriteTextBox.Text = pr._note[ListBoxNote.SelectedIndex].Text;
+
+                //WriteTextBox.Text = pr.UpdateData();
+
                 TimeCreateLabel.Text = (pr._note[ListBoxNote.SelectedIndex].TimeCreation).ToString("dd/MM/yyyy");
                 TimeModifiedLabel.Text = (pr._note[ListBoxNote.SelectedIndex].TimeModified).ToString("dd/MM/yyyy");
                 SelectNameLabel.Text = pr._note[ListBoxNote.SelectedIndex].Title;
@@ -119,7 +120,8 @@ namespace NoteAppUI
         /// </summary>
         public void RemoteNoteMeth()
         {
-            try {
+            try
+            {
                 int ItemID = ListBoxNote.SelectedIndex;
 
                 if (ItemID == 0)

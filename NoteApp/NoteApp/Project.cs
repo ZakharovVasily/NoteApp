@@ -36,7 +36,8 @@ namespace NoteApp
         /// <summary>
         /// Метод добавления\изменения заметок
         /// </summary>
-        public void ChangeNote(Note NoteMod, string NewTitle, NoteCategory NewCategory, string NewText, DateTime NewTimeCreation, DateTime NewTimeModified)
+        public void ChangeNote(Note NoteMod, string NewTitle, NoteCategory NewCategory, string NewText,
+            DateTime NewTimeCreation, DateTime NewTimeModified)
         {
             if (NoteMod != null)
             {
@@ -68,11 +69,9 @@ namespace NoteApp
             {
                 case NoteCategory.Different:
                     return "Different";
-                    break;
 
                 case NoteCategory.Documents:
                     return "Documents";
-                    break;
 
                 case NoteCategory.Finance:
                     return "Finance";
@@ -102,11 +101,9 @@ namespace NoteApp
             {
                 case "Different":
                     return NoteCategory.Different;
-                    break;
 
                 case "Documents":
                     return NoteCategory.Documents;
-                    break;
 
                 case "Finance":
                     return NoteCategory.Finance;

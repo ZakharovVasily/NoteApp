@@ -9,7 +9,7 @@ namespace NoteApp
     /// <summary>
     /// Класс Заметки
     /// </summary>
-    public class Note
+    public class Note: ICloneable
     {
         /// <summary>
         /// Название заметки
@@ -53,14 +53,21 @@ namespace NoteApp
             get { return _timeModified; }
         }
 
-
+        /// <summary>
+        /// Крнструктор по умолчанию
+        /// </summary>
         public Note()
         {
-            Title = "";
-            Text = "";
+            Title = string.Empty;
+            Text = string.Empty;
             _category = NoteCategory.Different;
             _timeCreation = DateTime.Now;
             _timeModified = DateTime.Now;
+        }
+
+        public object Clone()
+        {
+            throw new NotImplementedException();
         }
     }
 }

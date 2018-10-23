@@ -103,6 +103,7 @@
             // 
             // NoteCategoryBox
             // 
+            this.NoteCategoryBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.NoteCategoryBox.FormattingEnabled = true;
             this.NoteCategoryBox.Location = new System.Drawing.Point(12, 34);
             this.NoteCategoryBox.Name = "NoteCategoryBox";
@@ -202,7 +203,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -219,21 +220,21 @@
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.addToolStripMenuItem.Text = "Add Note";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // editNoteToolStripMenuItem
             // 
             this.editNoteToolStripMenuItem.Name = "editNoteToolStripMenuItem";
-            this.editNoteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editNoteToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.editNoteToolStripMenuItem.Text = "Edit Note";
             this.editNoteToolStripMenuItem.Click += new System.EventHandler(this.editNoteToolStripMenuItem_Click);
             // 
             // remoteNoteToolStripMenuItem
             // 
             this.remoteNoteToolStripMenuItem.Name = "remoteNoteToolStripMenuItem";
-            this.remoteNoteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.remoteNoteToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.remoteNoteToolStripMenuItem.Text = "Remote Note";
             this.remoteNoteToolStripMenuItem.Click += new System.EventHandler(this.remoteNoteToolStripMenuItem_Click);
             // 
@@ -248,7 +249,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
