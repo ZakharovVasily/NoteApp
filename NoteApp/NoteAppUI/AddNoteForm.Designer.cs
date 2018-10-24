@@ -38,6 +38,7 @@
             this.NewNoteCategoryBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.NewTimeModified = new System.Windows.Forms.Label();
+            this.CancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -52,7 +53,7 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(440, 371);
+            this.AddButton.Location = new System.Drawing.Point(359, 371);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(75, 23);
             this.AddButton.TabIndex = 2;
@@ -62,10 +63,12 @@
             // 
             // NewTitleText
             // 
+            this.NewTitleText.ForeColor = System.Drawing.Color.Black;
             this.NewTitleText.Location = new System.Drawing.Point(94, 8);
             this.NewTitleText.Name = "NewTitleText";
             this.NewTitleText.Size = new System.Drawing.Size(359, 20);
             this.NewTitleText.TabIndex = 3;
+            this.NewTitleText.TextChanged += new System.EventHandler(this.NewTitleText_TextChanged);
             // 
             // NewTextText
             // 
@@ -132,11 +135,22 @@
             this.NewTimeModified.TabIndex = 10;
             this.NewTimeModified.Text = "label7";
             // 
+            // CancelButton
+            // 
+            this.CancelButton.Location = new System.Drawing.Point(440, 371);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(75, 23);
+            this.CancelButton.TabIndex = 11;
+            this.CancelButton.Text = "Отмена";
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
             // AddNoteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(539, 401);
+            this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.NewTimeModified);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.NewNoteCategoryBox);
@@ -147,6 +161,8 @@
             this.Controls.Add(this.NewTitleText);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "AddNoteForm";
             this.Text = "Add/Edit Note";
             this.ResumeLayout(false);
@@ -166,5 +182,6 @@
         private System.Windows.Forms.ComboBox NewNoteCategoryBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label NewTimeModified;
+        private System.Windows.Forms.Button CancelButton;
     }
 }

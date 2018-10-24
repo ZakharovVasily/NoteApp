@@ -1,45 +1,44 @@
 ﻿using System;
 using System.Windows.Forms;
-
+using NoteApp;
 
 namespace NoteAppUI
 {
     public partial class MainForm : Form
     {
-        public NoteApp.Project pr = new NoteApp.Project();
+        /// <summary>
+        /// Создаеться обьект класса
+        /// </summary>
+        private  static  Project _project = new Project();
 
-        //public NoteApp.ManagerProject pr = new NoteApp.ManagerProject();
 
         public MainForm()
         {
             InitializeComponent();
+                
+            if (ProjectManager.OpenProject() != null)
+            {
+                _project = ProjectManager.OpenProject();
 
-            ClearAll();
-            
-            
-            pr.ChangeNote(null, "Название1", NoteApp.NoteCategory.Different, "Текст1", DateTime.Now, DateTime.Now);
-            ListBoxNote.Items.Add(pr._note[pr.CountNote].Title);
-            pr.ChangeNote(null, "Название2", NoteApp.NoteCategory.Documents,"Текст2", DateTime.Now, DateTime.Now);
-            ListBoxNote.Items.Add(pr._note[pr.CountNote].Title);
+                //if(_project.CountList > -1) { ListBoxNote.SelectedIndex = 0;}
+            }
 
-            //pr.UpdateData();
-
-            ListBoxNote.SelectedIndex = 0;
             AddCategoryBox();
          }
 
         /// <summary>
-        /// Добавляем категории (хз как все срвзу)
+        /// Добавляем категории (хз как все срвзу) 
         /// </summary>
         private void AddCategoryBox()
         {
+            //TODO: прогуглить
             NoteCategoryBox.Items.Add("All");
-            NoteCategoryBox.Items.Add(NoteApp.NoteCategory.Different);
-            NoteCategoryBox.Items.Add(NoteApp.NoteCategory.Documents);
-            NoteCategoryBox.Items.Add(NoteApp.NoteCategory.Finance);
-            NoteCategoryBox.Items.Add(NoteApp.NoteCategory.HealthAndSport);
-            NoteCategoryBox.Items.Add(NoteApp.NoteCategory.House);
-            NoteCategoryBox.Items.Add(NoteApp.NoteCategory.Job);
+            NoteCategoryBox.Items.Add(NoteCategory.Different);
+            NoteCategoryBox.Items.Add(NoteCategory.Documents);
+            NoteCategoryBox.Items.Add(NoteCategory.Finance);
+            NoteCategoryBox.Items.Add(NoteCategory.HealthAndSport);
+            NoteCategoryBox.Items.Add(NoteCategory.House);
+            NoteCategoryBox.Items.Add(NoteCategory.Job);
 
             NoteCategoryBox.SelectedIndex = 0;
         }
@@ -47,105 +46,81 @@ namespace NoteAppUI
         /// <summary>
         /// Вывод текста из ListBox'a в TextBox
         /// </summary>
-        private void ListBoxNote_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void ListBoxNote_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListBoxNote.Items.Count > 1)
+            //TODO: Items.Any! new VS
+            if (ListBoxNote.SelectedIndex > -1)
             {
-                //WriteTextBox.Text = pr._note[ListBoxNote.SelectedIndex].Text;
-
-                //WriteTextBox.Text = pr.UpdateData();
-
-                TimeCreateLabel.Text = (pr._note[ListBoxNote.SelectedIndex].TimeCreation).ToString("dd/MM/yyyy");
-                TimeModifiedLabel.Text = (pr._note[ListBoxNote.SelectedIndex].TimeModified).ToString("dd/MM/yyyy");
-                SelectNameLabel.Text = pr._note[ListBoxNote.SelectedIndex].Title;
-                SelectCategoryLabel.Text = pr.NoteCategoryToStr(pr._note[ListBoxNote.SelectedIndex].Category);
+                if (ListBoxNote.Items.Count > 0)
+                {
+                    NoteTextBox.Text = _project.Note[ListBoxNote.SelectedIndex].Text;
+                    TimeCreateLabel.Text = (_project.Note[ListBoxNote.SelectedIndex].TimeCreation).ToString("dd/MM/yyyy");
+                    TimeModifiedLabel.Text = (_project.Note[ListBoxNote.SelectedIndex].TimeModified).ToString("dd/MM/yyyy");
+                    SelectNameLabel.Text = _project.Note[ListBoxNote.SelectedIndex].Title;
+                    SelectCategoryLabel.Text = _project.Note[ListBoxNote.SelectedIndex].Category.ToString();
+                }
             }
         }
 
         /// <summary>
         /// Метод для добавления новой записи
         /// </summary>
-        public void AddNoteMeth()
+        public void AddNote()
         {
-            Data.TmpTitle = "";
-            Data.TmpText = "";
-            Data.TmpTimeCreate = DateTime.Now;
+            var addNoteForm = new AddNoteForm(new Note());
+            addNoteForm.ShowDialog();
 
-            AddNoteForm Form2 = new AddNoteForm();
-            Form2.ShowDialog();
-
-            if (Form2.DialogResult == DialogResult.OK)
+            if (addNoteForm.DialogResult == DialogResult.OK)
             {
-                pr.ChangeNote(null, Data.TmpTitle, pr.StrToNoteCategory(Data.TmpNoteCategory), Data.TmpText, DateTime.Now, DateTime.Now);
-                ListBoxNote.Items.Add(pr._note[pr.CountNote].Title);
+                _project.AddNote(addNoteForm.CurrentNote);
+                ListBoxNote.Items.Add(addNoteForm.CurrentNote.Title);
             }
+            
+            ProjectManager.SaveProject(_project);
         }
 
         /// <summary>
         /// Метод для редактирования существующей записи
         /// </summary>
-        public void EditNoteMeth()
+        public void EditNote()
         {
-            try
+            if (ListBoxNote.SelectedItem == null)
             {
-                Data.TmpTitle = pr._note[ListBoxNote.SelectedIndex].Title;
-                Data.TmpText = pr._note[ListBoxNote.SelectedIndex].Text;
-                Data.TmpTimeCreate = pr._note[ListBoxNote.SelectedIndex].TimeCreation;
-                Data.TmpNoteCategory = pr.NoteCategoryToStr(pr._note[ListBoxNote.SelectedIndex].Category);
-
-                AddNoteForm Form2 = new AddNoteForm();
-                Form2.ShowDialog();
-
-                if (Form2.DialogResult == DialogResult.OK)
-                {
-                    pr.ChangeNote(pr._note[ListBoxNote.SelectedIndex], Data.TmpTitle, pr.StrToNoteCategory(Data.TmpNoteCategory), Data.TmpText, Data.TmpTimeCreate, DateTime.Now);
-                }
-
-                ListBoxNote.Items[ListBoxNote.SelectedIndex] = Data.TmpTitle;
-
-                WriteTextBox.Update();
-                ListBoxNote.Update();
+                MessageBox.Show("Заметка не выбрана!!!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            catch 
-            {
-                if (ListBoxNote.SelectedItem == null)
-                {
-                    MessageBox.Show("Заметка не выбрана!!!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+
+            int selectedIndex = ListBoxNote.SelectedIndex;
+            ListBoxNote.SelectedIndex = -1;
+
+            var addNoteForm = new AddNoteForm(_project.Note[selectedIndex]);
+            addNoteForm.ShowDialog();
+
+            ListBoxNote.Items[selectedIndex] = addNoteForm.CurrentNote.Title;
+
+            NoteTextBox.Update();
+            ListBoxNote.Update();
+
+            ProjectManager.SaveProject(_project);
         }
 
         /// <summary>
         /// Метод для удаления записи
         /// </summary>
-        public void RemoteNoteMeth()
+        public void RemoveNote()
         {
-            try
+            if (ListBoxNote.SelectedItem == null)
             {
-                int ItemID = ListBoxNote.SelectedIndex;
-
-                if (ItemID == 0)
-                {
-                    WriteTextBox.Text = "";
-                    TimeCreateLabel.Text = "";
-                    TimeModifiedLabel.Text = "";
-                    SelectNameLabel.Text = "";
-                    SelectCategoryLabel.Text = "";
-                }
-
-                ListBoxNote.SelectedIndex--;
-
-                ListBoxNote.Items.RemoveAt(ItemID);
-                pr._note.RemoveAt(ItemID);
-                pr.CountNote--;
+                MessageBox.Show("Заметка не выбрана!!!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            catch
-            {
-                if (ListBoxNote.SelectedItem == null)
-                {
-                    MessageBox.Show("Заметка не выбрана!!!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            
+            ClearAll();
+            _project.Note.RemoveAt(ListBoxNote.SelectedIndex);
+            ListBoxNote.Items.RemoveAt(ListBoxNote.SelectedIndex);
+            _project.CountList--;
+
+            ProjectManager.SaveProject(_project);
         }
 
         /// <summary>
@@ -156,15 +131,15 @@ namespace NoteAppUI
             ListBoxNote.Items.Clear();
             ClearAll();
 
-            for (int i = 0; i <= pr.CountNote; i++)
+            for (int i = 0; i <= _project.CountList; i++)
             {
                 if (NoteCategoryBox.SelectedItem.ToString() == "All")
                 {
-                    ListBoxNote.Items.Add(pr._note[i].Title);
+                    ListBoxNote.Items.Add(_project.Note[i].Title);
                 }
-                else if (pr._note[i].Category == pr.StrToNoteCategory(NoteCategoryBox.SelectedItem.ToString())) ///!!!!!
+                else if (_project.Note[i].Category == EnumParser.StringToNoteCategory(NoteCategoryBox.SelectedItem.ToString()))
                 {
-                    ListBoxNote.Items.Add(pr._note[i].Title);
+                    ListBoxNote.Items.Add(_project.Note[i].Title);
                 }
             }
         }
@@ -174,7 +149,7 @@ namespace NoteAppUI
         /// </summary>
         public void ClearAll()
         {
-            WriteTextBox.Text = "";
+            NoteTextBox.Text = "";
             TimeCreateLabel.Text = "";
             TimeModifiedLabel.Text = "";
             SelectNameLabel.Text = "";
@@ -186,7 +161,7 @@ namespace NoteAppUI
         /// </summary>
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddNoteMeth();
+            AddNote();
         }
 
         /// <summary>
@@ -194,7 +169,7 @@ namespace NoteAppUI
         /// </summary>
         private void AddNote_Click(object sender, EventArgs e)
         {
-            AddNoteMeth();
+            AddNote();
         }
 
         /// <summary>
@@ -202,7 +177,7 @@ namespace NoteAppUI
         /// </summary>
         private void editNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EditNoteMeth();
+            EditNote();
         }
 
         /// <summary>
@@ -210,7 +185,7 @@ namespace NoteAppUI
         /// </summary>
         private void EditNoteButton_Click(object sender, EventArgs e)
         {
-            EditNoteMeth();
+            EditNote();
         }
 
         /// <summary>
@@ -218,7 +193,7 @@ namespace NoteAppUI
         /// </summary>
         private void remoteNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RemoteNoteMeth();
+            RemoveNote();
         }
 
         /// <summary>
@@ -226,7 +201,7 @@ namespace NoteAppUI
         /// </summary>
         private void RemoveNoteButton_Click(object sender, EventArgs e)
         {
-            RemoteNoteMeth();
+            RemoveNote();
         }
 
         /// <summary>
@@ -234,7 +209,8 @@ namespace NoteAppUI
         /// </summary>
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            ProjectManager.SaveProject(_project);
+            Close();
         }
 
         /// <summary>
@@ -242,8 +218,8 @@ namespace NoteAppUI
         /// </summary>
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AboutForm AboutNewForm = new AboutForm();
-            AboutNewForm.ShowDialog();
+            var aboutNewForm = new AboutForm();
+            aboutNewForm.ShowDialog();
         }
     }
 }

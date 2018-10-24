@@ -19,31 +19,4 @@ namespace NoteAppUI
             Application.Run(new MainForm());
          }
     }
-
-    /// <summary>
-    /// Класс для передачи данных между формами
-    /// </summary>
-    static class Data
-    {
-        /// <summary>
-        /// Передача заголовка между формами
-        /// </summary>
-        public static string TmpTitle;
-
-        /// <summary>
-        /// Передача основного текста между формами
-        /// </summary>
-        public static string TmpText;
-
-        /// <summary>
-        /// Передача времени создании между формами
-        /// </summary>
-        public static DateTime TmpTimeCreate;
-
-        /// <summary>
-        /// Передача времени создании между формами
-        /// </summary>
-        public static string TmpNoteCategory;
-    }
-
 }

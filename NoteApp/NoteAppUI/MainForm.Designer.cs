@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.ListBoxNote = new System.Windows.Forms.ListBox();
-            this.AddNote = new System.Windows.Forms.Button();
+            this.AddNoteButton = new System.Windows.Forms.Button();
             this.TimeCreateLabel = new System.Windows.Forms.Label();
-            this.WriteTextBox = new System.Windows.Forms.TextBox();
+            this.NoteTextBox = new System.Windows.Forms.TextBox();
             this.TimeModifiedLabel = new System.Windows.Forms.Label();
             this.NoteCategoryBox = new System.Windows.Forms.ComboBox();
             this.EditNoteButton = new System.Windows.Forms.Button();
@@ -60,46 +60,44 @@
             this.ListBoxNote.Name = "ListBoxNote";
             this.ListBoxNote.Size = new System.Drawing.Size(145, 251);
             this.ListBoxNote.TabIndex = 0;
-            this.ListBoxNote.SelectedIndexChanged += new System.EventHandler(this.ListBoxNote_SelectedIndexChanged_1);
+            this.ListBoxNote.SelectedIndexChanged += new System.EventHandler(this.ListBoxNote_SelectedIndexChanged);
             // 
-            // AddNote
+            // AddNoteButton
             // 
-            this.AddNote.Location = new System.Drawing.Point(12, 324);
-            this.AddNote.Name = "AddNote";
-            this.AddNote.Size = new System.Drawing.Size(64, 24);
-            this.AddNote.TabIndex = 1;
-            this.AddNote.Text = "Add";
-            this.AddNote.UseVisualStyleBackColor = true;
-            this.AddNote.Click += new System.EventHandler(this.AddNote_Click);
+            this.AddNoteButton.Location = new System.Drawing.Point(12, 324);
+            this.AddNoteButton.Name = "AddNoteButton";
+            this.AddNoteButton.Size = new System.Drawing.Size(64, 24);
+            this.AddNoteButton.TabIndex = 1;
+            this.AddNoteButton.Text = "Add";
+            this.AddNoteButton.UseVisualStyleBackColor = true;
+            this.AddNoteButton.Click += new System.EventHandler(this.AddNote_Click);
             // 
             // TimeCreateLabel
             // 
             this.TimeCreateLabel.AutoSize = true;
             this.TimeCreateLabel.Location = new System.Drawing.Point(586, 328);
             this.TimeCreateLabel.Name = "TimeCreateLabel";
-            this.TimeCreateLabel.Size = new System.Drawing.Size(35, 13);
+            this.TimeCreateLabel.Size = new System.Drawing.Size(0, 13);
             this.TimeCreateLabel.TabIndex = 2;
-            this.TimeCreateLabel.Text = "label1";
             // 
-            // WriteTextBox
+            // NoteTextBox
             // 
-            this.WriteTextBox.Location = new System.Drawing.Point(172, 61);
-            this.WriteTextBox.Multiline = true;
-            this.WriteTextBox.Name = "WriteTextBox";
-            this.WriteTextBox.ReadOnly = true;
-            this.WriteTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.WriteTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.WriteTextBox.Size = new System.Drawing.Size(500, 250);
-            this.WriteTextBox.TabIndex = 3;
+            this.NoteTextBox.Location = new System.Drawing.Point(172, 61);
+            this.NoteTextBox.Multiline = true;
+            this.NoteTextBox.Name = "NoteTextBox";
+            this.NoteTextBox.ReadOnly = true;
+            this.NoteTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.NoteTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.NoteTextBox.Size = new System.Drawing.Size(500, 250);
+            this.NoteTextBox.TabIndex = 3;
             // 
             // TimeModifiedLabel
             // 
             this.TimeModifiedLabel.AutoSize = true;
             this.TimeModifiedLabel.Location = new System.Drawing.Point(586, 360);
             this.TimeModifiedLabel.Name = "TimeModifiedLabel";
-            this.TimeModifiedLabel.Size = new System.Drawing.Size(35, 13);
+            this.TimeModifiedLabel.Size = new System.Drawing.Size(0, 13);
             this.TimeModifiedLabel.TabIndex = 4;
-            this.TimeModifiedLabel.Text = "label1";
             // 
             // NoteCategoryBox
             // 
@@ -166,9 +164,8 @@
             this.SelectCategoryLabel.AutoSize = true;
             this.SelectCategoryLabel.Location = new System.Drawing.Point(320, 330);
             this.SelectCategoryLabel.Name = "SelectCategoryLabel";
-            this.SelectCategoryLabel.Size = new System.Drawing.Size(35, 13);
+            this.SelectCategoryLabel.Size = new System.Drawing.Size(0, 13);
             this.SelectCategoryLabel.TabIndex = 12;
-            this.SelectCategoryLabel.Text = "label1";
             // 
             // SelectNameLabel
             // 
@@ -176,9 +173,8 @@
             this.SelectNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.SelectNameLabel.Location = new System.Drawing.Point(169, 37);
             this.SelectNameLabel.Name = "SelectNameLabel";
-            this.SelectNameLabel.Size = new System.Drawing.Size(52, 17);
+            this.SelectNameLabel.Size = new System.Drawing.Size(0, 17);
             this.SelectNameLabel.TabIndex = 13;
-            this.SelectNameLabel.Text = "label2";
             // 
             // menuStrip1
             // 
@@ -267,14 +263,16 @@
             this.Controls.Add(this.EditNoteButton);
             this.Controls.Add(this.NoteCategoryBox);
             this.Controls.Add(this.TimeModifiedLabel);
-            this.Controls.Add(this.WriteTextBox);
+            this.Controls.Add(this.NoteTextBox);
             this.Controls.Add(this.TimeCreateLabel);
-            this.Controls.Add(this.AddNote);
+            this.Controls.Add(this.AddNoteButton);
             this.Controls.Add(this.ListBoxNote);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "NoteApp";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -285,9 +283,9 @@
         #endregion
 
         private System.Windows.Forms.ListBox ListBoxNote;
-        private System.Windows.Forms.Button AddNote;
+        private System.Windows.Forms.Button AddNoteButton;
         private System.Windows.Forms.Label TimeCreateLabel;
-        private System.Windows.Forms.TextBox WriteTextBox;
+        private System.Windows.Forms.TextBox NoteTextBox;
         private System.Windows.Forms.Label TimeModifiedLabel;
         private System.Windows.Forms.ComboBox NoteCategoryBox;
         private System.Windows.Forms.Button EditNoteButton;

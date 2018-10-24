@@ -14,112 +14,33 @@ namespace NoteApp
         /// <summary>
         /// Список заметок
         /// </summary>
-        public List<Note> _note;
-
-        public Project()
-        {
-            _note = new List<Note>();
-            CountNote = -1;
-        }
+        public IList<Note> Note { get; set; }
 
         /// <summary>
-        /// Счетчик кол-ва заметок в списке
+        /// Количество записей в листе
         /// </summary>
-        private int _countNote;
+        public int CountList { get; set; }
 
-        public int CountNote
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        public Project()
         {
-            set { _countNote = value; }
-            get { return _countNote; }
+            Note = new List<Note>();
+            CountList = -1;
         }
 
         /// <summary>
         /// Метод добавления\изменения заметок
         /// </summary>
-        public void ChangeNote(Note NoteMod, string NewTitle, NoteCategory NewCategory, string NewText,
-            DateTime NewTimeCreation, DateTime NewTimeModified)
+        public void AddNote(Note note)
         {
-            if (NoteMod != null)
-            {
-                NoteMod.Title = NewTitle;
-                NoteMod.Text = NewText;
-                NoteMod.Category = NewCategory;
-                NoteMod.TimeModified = NewTimeModified;
-            }
-            else
-            {
-                Note NewNote = new Note();
-                NewNote.Title = NewTitle;
-                NewNote.Text = NewText;
-                NewNote.Category = NewCategory;
-                NewNote.TimeModified = NewTimeModified;
-                _countNote++;
-                _note.Add(NewNote);
-            }
-        }
+            //TODO: принцип Solid
+            if (note == null)
+                throw new ArgumentNullException(nameof(note));
 
-        /// <summary>
-        /// Из категории в текст
-        /// </summary>
-        /// <param name="NewCategory"></param>
-        /// <returns>Возращает строку категории</returns>
-        public string NoteCategoryToStr(NoteCategory NewCategory)
-        {
-            switch (NewCategory)
-            {
-                case NoteCategory.Different:
-                    return "Different";
-
-                case NoteCategory.Documents:
-                    return "Documents";
-
-                case NoteCategory.Finance:
-                    return "Finance";
-
-                case NoteCategory.HealthAndSport:
-                    return "HealthAndSport";
-
-                case NoteCategory.House:
-                    return "House";
-
-                case NoteCategory.Job:
-                    return "Job";
-
-                default:
-                    return "";
-            }
-        }
-
-        /// <summary>
-        /// Из текста в категорию
-        /// </summary>
-        /// <param name="NewCategory"></param>
-        /// <returns>Возращает строку категории</returns>
-        public NoteCategory StrToNoteCategory(string TextCategory)
-        {
-            switch (TextCategory)
-            {
-                case "Different":
-                    return NoteCategory.Different;
-
-                case "Documents":
-                    return NoteCategory.Documents;
-
-                case "Finance":
-                    return NoteCategory.Finance;
-
-                case "HealthAndSport":
-                    return NoteCategory.HealthAndSport;
-
-                case "House":
-                    return NoteCategory.House;
-
-                case "Job":
-                    return NoteCategory.Job;
-
-                default:
-                    return NoteCategory.Different;
-            }
+            Note.Add(note);
+            CountList++;
         }
     }
 }

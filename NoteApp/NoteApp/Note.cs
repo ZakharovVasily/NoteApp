@@ -1,73 +1,69 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace NoteApp
 {
     /// <summary>
     /// Класс Заметки
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class Note: ICloneable
     {
         /// <summary>
         /// Название заметки
         /// </summary>
-        public string Title;
+        [JsonProperty]
+        public string Title { get; set; }
 
-         /// <summary>
+        /// <summary>
         /// Текст в заметке
         /// </summary>
-        public string Text;
+        [JsonProperty]
+        public string Text { get; set; }
 
         /// <summary>
         /// Категория заметки
         /// </summary>
-        private NoteCategory _category;
-
-        public NoteCategory Category
-        {
-            set { _category = value; }
-            get { return _category; }
-        }     
+        [JsonProperty]
+        public NoteCategory Category { get; set; }
 
         /// <summary>
         /// Время и дата создания заметки
         /// </summary>
-        private DateTime _timeCreation;
-
-        public DateTime TimeCreation
-        {
-            get { return _timeCreation;  }
-        }
+        [JsonProperty]
+        public DateTime TimeCreation { get; private set; }
 
         /// <summary>
         /// Время и дата последнего изменения заметки
         /// </summary>
-        private DateTime _timeModified;
-
-        public DateTime TimeModified
-        {
-            set { _timeModified = value; }
-            get { return _timeModified; }
-        }
+        [JsonProperty]
+        public DateTime TimeModified { get; set; }
 
         /// <summary>
         /// Крнструктор по умолчанию
         /// </summary>
         public Note()
         {
-            Title = string.Empty;
-            Text = string.Empty;
-            _category = NoteCategory.Different;
-            _timeCreation = DateTime.Now;
-            _timeModified = DateTime.Now;
+            Title = "Без названия";
+            Category = NoteCategory.Different;
+            TimeCreation = DateTime.Now;
+            TimeModified = DateTime.Now;
         }
 
+        /// <summary>
+        /// Клонирование класса
+        /// </summary>
+        /// <returns></returns>
         public object Clone()
         {
-            throw new NotImplementedException();
+            return new Note()
+            {
+                Category = this.Category,
+                Title = this.Title,
+                Text = this.Text,
+                TimeCreation = this.TimeCreation,
+                TimeModified = this.TimeModified
+            };
         }
     }
 }
