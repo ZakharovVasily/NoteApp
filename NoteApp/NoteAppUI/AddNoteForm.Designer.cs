@@ -30,14 +30,14 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.AddButton = new System.Windows.Forms.Button();
-            this.NewTitleText = new System.Windows.Forms.TextBox();
-            this.NewTextText = new System.Windows.Forms.TextBox();
+            this.NewTitleTextBox = new System.Windows.Forms.TextBox();
+            this.NewTextTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.NewTimeCreate = new System.Windows.Forms.Label();
+            this.NewTimeCreateLabel = new System.Windows.Forms.Label();
             this.NewNoteCategoryBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.NewTimeModified = new System.Windows.Forms.Label();
+            this.NewTimeModifiedLabel = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -61,23 +61,23 @@
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
-            // NewTitleText
+            // NewTitleTextBox
             // 
-            this.NewTitleText.ForeColor = System.Drawing.Color.Black;
-            this.NewTitleText.Location = new System.Drawing.Point(94, 8);
-            this.NewTitleText.Name = "NewTitleText";
-            this.NewTitleText.Size = new System.Drawing.Size(359, 20);
-            this.NewTitleText.TabIndex = 3;
-            this.NewTitleText.TextChanged += new System.EventHandler(this.NewTitleText_TextChanged);
+            this.NewTitleTextBox.ForeColor = System.Drawing.Color.Black;
+            this.NewTitleTextBox.Location = new System.Drawing.Point(94, 8);
+            this.NewTitleTextBox.Name = "NewTitleTextBox";
+            this.NewTitleTextBox.Size = new System.Drawing.Size(359, 20);
+            this.NewTitleTextBox.TabIndex = 3;
+            this.NewTitleTextBox.TextChanged += new System.EventHandler(this.NewTitleText_TextChanged);
             // 
-            // NewTextText
+            // NewTextTextBox
             // 
-            this.NewTextText.Location = new System.Drawing.Point(15, 115);
-            this.NewTextText.Multiline = true;
-            this.NewTextText.Name = "NewTextText";
-            this.NewTextText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.NewTextText.Size = new System.Drawing.Size(500, 250);
-            this.NewTextText.TabIndex = 4;
+            this.NewTextTextBox.Location = new System.Drawing.Point(15, 115);
+            this.NewTextTextBox.Multiline = true;
+            this.NewTextTextBox.Name = "NewTextTextBox";
+            this.NewTextTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.NewTextTextBox.Size = new System.Drawing.Size(500, 250);
+            this.NewTextTextBox.TabIndex = 4;
             // 
             // label3
             // 
@@ -99,14 +99,14 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Созданно:";
             // 
-            // NewTimeCreate
+            // NewTimeCreateLabel
             // 
-            this.NewTimeCreate.AutoSize = true;
-            this.NewTimeCreate.Location = new System.Drawing.Point(84, 80);
-            this.NewTimeCreate.Name = "NewTimeCreate";
-            this.NewTimeCreate.Size = new System.Drawing.Size(35, 13);
-            this.NewTimeCreate.TabIndex = 7;
-            this.NewTimeCreate.Text = "label5";
+            this.NewTimeCreateLabel.AutoSize = true;
+            this.NewTimeCreateLabel.Location = new System.Drawing.Point(84, 80);
+            this.NewTimeCreateLabel.Name = "NewTimeCreateLabel";
+            this.NewTimeCreateLabel.Size = new System.Drawing.Size(35, 13);
+            this.NewTimeCreateLabel.TabIndex = 7;
+            this.NewTimeCreateLabel.Text = "label5";
             // 
             // NewNoteCategoryBox
             // 
@@ -126,14 +126,14 @@
             this.label6.TabIndex = 9;
             this.label6.Text = "Измененно:";
             // 
-            // NewTimeModified
+            // NewTimeModifiedLabel
             // 
-            this.NewTimeModified.AutoSize = true;
-            this.NewTimeModified.Location = new System.Drawing.Point(430, 82);
-            this.NewTimeModified.Name = "NewTimeModified";
-            this.NewTimeModified.Size = new System.Drawing.Size(35, 13);
-            this.NewTimeModified.TabIndex = 10;
-            this.NewTimeModified.Text = "label7";
+            this.NewTimeModifiedLabel.AutoSize = true;
+            this.NewTimeModifiedLabel.Location = new System.Drawing.Point(430, 82);
+            this.NewTimeModifiedLabel.Name = "NewTimeModifiedLabel";
+            this.NewTimeModifiedLabel.Size = new System.Drawing.Size(35, 13);
+            this.NewTimeModifiedLabel.TabIndex = 10;
+            this.NewTimeModifiedLabel.Text = "label7";
             // 
             // CancelButton
             // 
@@ -151,14 +151,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(539, 401);
             this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.NewTimeModified);
+            this.Controls.Add(this.NewTimeModifiedLabel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.NewNoteCategoryBox);
-            this.Controls.Add(this.NewTimeCreate);
+            this.Controls.Add(this.NewTimeCreateLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.NewTextText);
-            this.Controls.Add(this.NewTitleText);
+            this.Controls.Add(this.NewTextTextBox);
+            this.Controls.Add(this.NewTitleTextBox);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -174,14 +174,14 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button AddButton;
-        private System.Windows.Forms.TextBox NewTitleText;
-        private System.Windows.Forms.TextBox NewTextText;
+        private System.Windows.Forms.TextBox NewTitleTextBox;
+        private System.Windows.Forms.TextBox NewTextTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label NewTimeCreate;
+        private System.Windows.Forms.Label NewTimeCreateLabel;
         private System.Windows.Forms.ComboBox NewNoteCategoryBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label NewTimeModified;
+        private System.Windows.Forms.Label NewTimeModifiedLabel;
         private System.Windows.Forms.Button CancelButton;
     }
 }

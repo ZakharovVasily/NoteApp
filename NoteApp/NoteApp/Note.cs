@@ -4,43 +4,43 @@ using Newtonsoft.Json;
 namespace NoteApp
 {
     /// <summary>
-    /// Класс Заметки
+    /// Класс Заметки.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
     public class Note: ICloneable
     {
         /// <summary>
-        /// Название заметки
+        /// Название заметки.
         /// </summary>
         [JsonProperty]
         public string Title { get; set; }
 
         /// <summary>
-        /// Текст в заметке
+        /// Текст в заметке.
         /// </summary>
         [JsonProperty]
         public string Text { get; set; }
 
         /// <summary>
-        /// Категория заметки
+        /// Категория заметки.
         /// </summary>
         [JsonProperty]
         public NoteCategory Category { get; set; }
 
         /// <summary>
-        /// Время и дата создания заметки
+        /// Время и дата создания заметки.
         /// </summary>
         [JsonProperty]
         public DateTime TimeCreation { get; private set; }
 
         /// <summary>
-        /// Время и дата последнего изменения заметки
+        /// Время и дата последнего изменения заметки.
         /// </summary>
         [JsonProperty]
         public DateTime TimeModified { get; set; }
 
         /// <summary>
-        /// Крнструктор по умолчанию
+        /// Крнструктор по умолчанию.
         /// </summary>
         public Note()
         {
@@ -51,7 +51,7 @@ namespace NoteApp
         }
 
         /// <summary>
-        /// Клонирование класса
+        /// Клонирование класса.
         /// </summary>
         /// <returns></returns>
         public object Clone()

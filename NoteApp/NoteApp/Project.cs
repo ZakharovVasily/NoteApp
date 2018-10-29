@@ -14,20 +14,14 @@ namespace NoteApp
         /// <summary>
         /// Список заметок
         /// </summary>
-        public IList<Note> Note { get; set; }
-
-        /// <summary>
-        /// Количество записей в листе
-        /// </summary>
-        public int CountList { get; set; }
+        public List<Note> Notes { get; set; }
 
         /// <summary>
         /// Конструктор
         /// </summary>
         public Project()
         {
-            Note = new List<Note>();
-            CountList = -1;
+            Notes = new List<Note>();
         }
 
         /// <summary>
@@ -39,8 +33,7 @@ namespace NoteApp
             if (note == null)
                 throw new ArgumentNullException(nameof(note));
 
-            Note.Add(note);
-            CountList++;
+            Notes.Add(note);
         }
     }
 }

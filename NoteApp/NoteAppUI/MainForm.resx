@@ -117,6 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="AddNoteButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAOxJREFUOE+10rFqAkEUheENgtHeyso+6bWwimIjhLxAKvMAdvooFoLg60RQ7BVs
+        tIppNEQS0P/gznLXnV0s9MAHuzNzZ4e5G9w7ORTPj9fnEV1M8Y8j1higgsyUoUIV+ezwBm/05RlswQYL
+        /JmxA6pIRMe2xdKGsoId/0QivqOnbSDPiKLbdhe2RDNUglKH3odwG7wjSgFuYq6BlPTh1n1owEat0oRO
+        sg21oGhTvf/AbfCCWNRnN+mk3cEX1LVY9JPsYReO0MO3GRN1zJtX/MIuvjTGA1JTwwSXhboDfTmz2OYJ
+        alUHDeRx6wTBCeQKZJcKrmotAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="EditNoteButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAQZJREFUOE+V0jkvBVEYBuBRicreWiohEltHSWUnEfEnEBE0Sg21QqHSKW2NikZj
+        iwaVhgaNDg3Pd3MlU8zIvW/yJOdM8n4nc3KSMlLJLmd0xYdyUkMHr/zwTjclpYJz9ukhPaSdfxMnzzPA
+        BzGkl78hW+SmlktOaCQ9pI9n+slMHVcc08IjG6SHVJGZeq45IsoPfDFG3H4MWSQzDdwQ5WbS5enieojM
+        xH/eckiU74nCKFPF9RqZifIdBzTxVx5hsrheITc7nJJXXiY38VBemGGON4aZIMpL/Jt4GN9UF3ZJ0sY4
+        n+TedjrrxKNoZZY94uQFSsoF8SzDE9sMUnI2WaWzsCsrSfILGD9D0pRd/z8AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="RemoveNoteButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAKxJREFUOE/NkssNwjAQBc2ZIFEFNBCuFAMNwDk0wR0JeuFIH3TBZ15gpcVeo9xg
+        pJFixe8lXjn9HXPc4KhffTLFHU76VcAMr/jAA/oShS+od2ccY8EWtcG0Eh+Wd1xggTYr5EtO6MM3XGGV
+        qGRw2FDJEfOCNQ4iP7OZDzakFja/luRhnVm/nc+kWtKhD9vAosEusUA3TJckmrYv2b/XIQ22r8cChfTl
+        avgXpPQEs2xE0+cikyYAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

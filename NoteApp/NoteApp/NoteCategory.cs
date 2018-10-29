@@ -12,6 +12,11 @@ namespace NoteApp
     public enum NoteCategory
     {
         /// <summary>
+        /// Разное
+        /// </summary>
+        Different,
+
+        /// <summary>
         /// Работа
         /// </summary>
         Job,
@@ -34,11 +39,6 @@ namespace NoteApp
         /// <summary>
         /// Финансы
         /// </summary>
-        Finance,
-
-        /// <summary>
-        /// Разное
-        /// </summary>
-        Different
+        Finance
     }
 }
