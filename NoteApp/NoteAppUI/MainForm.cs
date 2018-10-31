@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using NoteApp;
 
@@ -11,6 +13,7 @@ namespace NoteAppUI
         /// </summary>
         private  static  Project _project = new Project();
 
+        private static List<Note> showNotes;
 
         public MainForm()
         {
@@ -45,7 +48,7 @@ namespace NoteAppUI
             {
                 if (ListBoxNote.Items.Count > 0)
                 {
-                    var note = _project.Notes[ListBoxNote.SelectedIndex];
+                    var note = showNotes[ListBoxNote.SelectedIndex];
 
                     NoteTextBox.Text = note.Text;
                     TimeCreateLabel.Text = note.TimeCreation.ToString("dd/MM/yyyy");
@@ -72,7 +75,9 @@ namespace NoteAppUI
                 _project.Notes.Add(addNoteForm.Data);
                 ListBoxNote.Items.Add(addNoteForm.Data.Title);
             }
-            
+
+            ShowListBoxNote();
+
             ProjectManager.SaveProject(_project);
         }
 
@@ -91,7 +96,7 @@ namespace NoteAppUI
             ListBoxNote.SelectedIndex = -1;
 
             var addNoteForm = new AddNoteForm();
-            var selectedNote = _project.Notes[selectedIndex];
+            var selectedNote = showNotes[selectedIndex];
 
             addNoteForm.Data = selectedNote;
             addNoteForm.ShowDialog();
@@ -100,6 +105,8 @@ namespace NoteAppUI
 
             NoteTextBox.Update();
             ListBoxNote.Update();
+
+            ShowListBoxNote();
 
             ProjectManager.SaveProject(_project);
         }
@@ -125,7 +132,32 @@ namespace NoteAppUI
                 _project.Notes.RemoveAt(ListBoxNote.SelectedIndex);
                 ListBoxNote.Items.RemoveAt(ListBoxNote.SelectedIndex);
 
+                ShowListBoxNote();
+
                 ProjectManager.SaveProject(_project);
+            }
+        }
+
+        /// <summary>
+        /// Выводит заметки в лист боксе.
+        /// </summary>
+        public void ShowListBoxNote()
+        {
+            ListBoxNote.Items.Clear();
+            ClearAll();
+
+            if (_project.Notes.Count <= 0)
+                return;
+
+            if (NoteCategoryBox.SelectedItem.ToString() != "All")
+                showNotes = _project.SortedNotes(EnumParser.StringToNoteCategory
+                    (NoteCategoryBox.SelectedItem.ToString()));
+            else
+                showNotes = _project.Notes.OrderByDescending(t => t.TimeModified).ToList();
+
+            foreach (Note t in showNotes)
+            {
+                ListBoxNote.Items.Add(t.Title);
             }
         }
 
@@ -134,24 +166,7 @@ namespace NoteAppUI
         /// </summary>
         private void NoteCategoryBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListBoxNote.Items.Clear();
-            ClearAll();
-
-            if (_project.Notes.Count > 0)
-            {
-                for (int i = 0; i < _project.Notes.Count; i++)
-                {
-                    if (NoteCategoryBox.SelectedItem.ToString() == "All")
-                    {
-                        ListBoxNote.Items.Add(_project.Notes[i].Title);
-                    }
-                    else if (_project.Notes[i].Category ==
-                             EnumParser.StringToNoteCategory(NoteCategoryBox.SelectedItem.ToString()))
-                    {
-                        ListBoxNote.Items.Add(_project.Notes[i].Title);
-                    }
-                }
-            }
+            ShowListBoxNote();
         }
 
         /// <summary>

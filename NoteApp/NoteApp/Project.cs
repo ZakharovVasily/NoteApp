@@ -23,5 +23,18 @@ namespace NoteApp
         {
             Notes = new List<Note>();
         }
+
+        /// <summary>
+        /// Сортировка списка заметок по времени изменения и категории.
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public List<Note> SortedNotes(NoteCategory category)
+        {
+            List<Note> notes = Notes.Where(t => t.Category == category)
+                .OrderByDescending(t => t.TimeModified).ToList();
+
+            return notes;
+        }
     }
 }
