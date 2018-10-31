@@ -173,7 +173,7 @@
             // SelectCategoryLabel
             // 
             this.SelectCategoryLabel.AutoSize = true;
-            this.SelectCategoryLabel.Location = new System.Drawing.Point(320, 61);
+            this.SelectCategoryLabel.Location = new System.Drawing.Point(309, 61);
             this.SelectCategoryLabel.Name = "SelectCategoryLabel";
             this.SelectCategoryLabel.Size = new System.Drawing.Size(75, 13);
             this.SelectCategoryLabel.TabIndex = 12;

@@ -23,17 +23,5 @@ namespace NoteApp
         {
             Notes = new List<Note>();
         }
-
-        /// <summary>
-        /// Метод добавления\изменения заметок
-        /// </summary>
-        public void AddNote(Note note)
-        {
-            //TODO: принцип Solid
-            if (note == null)
-                throw new ArgumentNullException(nameof(note));
-
-            Notes.Add(note);
-        }
     }
 }

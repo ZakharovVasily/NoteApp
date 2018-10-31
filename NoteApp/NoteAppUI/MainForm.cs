@@ -7,7 +7,7 @@ namespace NoteAppUI
     public partial class MainForm : Form
     {
         /// <summary>
-        /// Обьект класса
+        /// Обьект класса.
         /// </summary>
         private  static  Project _project = new Project();
 
@@ -19,8 +19,6 @@ namespace NoteAppUI
             if (ProjectManager.OpenProject() != null)
             {
                 _project = ProjectManager.OpenProject();
-
-                //if(_project.Notes.Count > 0) { ListBoxNote.SelectedIndex = 0;}
             }
 
             AddCategoryBox();
@@ -63,13 +61,16 @@ namespace NoteAppUI
         /// </summary>
         public void AddNote()
         {
-            var addNoteForm = new AddNoteForm(new Note());
+            var addNoteForm = new AddNoteForm();
+            var selectedNote = new Note();
+
+            addNoteForm.Data = selectedNote;
             addNoteForm.ShowDialog();
 
             if (addNoteForm.DialogResult == DialogResult.OK)
             {
-                _project.AddNote(addNoteForm.CurrentNote);
-                ListBoxNote.Items.Add(addNoteForm.CurrentNote.Title);
+                _project.Notes.Add(addNoteForm.Data);
+                ListBoxNote.Items.Add(addNoteForm.Data.Title);
             }
             
             ProjectManager.SaveProject(_project);
@@ -89,10 +90,13 @@ namespace NoteAppUI
             int selectedIndex = ListBoxNote.SelectedIndex;
             ListBoxNote.SelectedIndex = -1;
 
-            var addNoteForm = new AddNoteForm(_project.Notes[selectedIndex]);
+            var addNoteForm = new AddNoteForm();
+            var selectedNote = _project.Notes[selectedIndex];
+
+            addNoteForm.Data = selectedNote;
             addNoteForm.ShowDialog();
 
-            ListBoxNote.Items[selectedIndex] = addNoteForm.CurrentNote.Title;
+            ListBoxNote.Items[selectedIndex] = addNoteForm.Data.Title;
 
             NoteTextBox.Update();
             ListBoxNote.Update();

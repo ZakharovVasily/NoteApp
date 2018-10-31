@@ -12,8 +12,25 @@ namespace NoteApp
         /// <summary>
         /// Название заметки.
         /// </summary>
+        private string _title;
+
+        /// <summary>
+        /// Определение переменной _title.
+        /// </summary>
         [JsonProperty]
-        public string Title { get; set; }
+        public string Title
+        {
+            get { return _title; }
+
+            set
+            {
+                if (value.Length > 50)
+                {
+                    throw new ArgumentException("Длинна заголовка должна быть меньше 50 символов.");
+                }
+                _title = value;
+            }
+        }
 
         /// <summary>
         /// Текст в заметке.
