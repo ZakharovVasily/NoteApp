@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using NoteApp;
 
@@ -13,15 +12,24 @@ namespace NoteAppUI
         /// </summary>
         private  static  Project _project = new Project();
 
-        private static List<Note> showNotes;
+        /// <summary>
+        /// Поле для показываемых заметок.
+        /// </summary>
+        private static List<Note> _showNotes;
+
+        /// <summary>
+        /// Поле содержащее путь к сохраняемому документу.
+        /// </summary>
+        private readonly string _saveFileName = @"json.txt";
 
         public MainForm()
         {
             InitializeComponent();
-                
-            if (ProjectManager.OpenProject() != null)
+
+            var openFileName = @"json.txt";
+            if (ProjectManager.OpenProject(openFileName) != null)
             {
-                _project = ProjectManager.OpenProject();
+                _project = ProjectManager.OpenProject(openFileName);
             }
 
             AddCategoryBox();
@@ -46,9 +54,10 @@ namespace NoteAppUI
             //TODO: Items.Any! new VS
             if (ListBoxNote.SelectedIndex > -1)
             {
+                
                 if (ListBoxNote.Items.Count > 0)
                 {
-                    var note = showNotes[ListBoxNote.SelectedIndex];
+                    var note = _showNotes[ListBoxNote.SelectedIndex];
 
                     NoteTextBox.Text = note.Text;
                     TimeCreateLabel.Text = note.TimeCreation.ToString("dd/MM/yyyy");
@@ -78,7 +87,7 @@ namespace NoteAppUI
 
             ShowListBoxNote();
 
-            ProjectManager.SaveProject(_project);
+            ProjectManager.SaveProject(_project, _saveFileName);
         }
 
         /// <summary>
@@ -96,7 +105,7 @@ namespace NoteAppUI
             ListBoxNote.SelectedIndex = -1;
 
             var addNoteForm = new AddNoteForm();
-            var selectedNote = showNotes[selectedIndex];
+            var selectedNote = _showNotes[selectedIndex];
 
             addNoteForm.Data = selectedNote;
             addNoteForm.ShowDialog();
@@ -108,7 +117,7 @@ namespace NoteAppUI
 
             ShowListBoxNote();
 
-            ProjectManager.SaveProject(_project);
+            ProjectManager.SaveProject(_project, _saveFileName);
         }
 
         /// <summary>
@@ -134,7 +143,7 @@ namespace NoteAppUI
 
                 ShowListBoxNote();
 
-                ProjectManager.SaveProject(_project);
+                ProjectManager.SaveProject(_project, _saveFileName);
             }
         }
 
@@ -150,12 +159,12 @@ namespace NoteAppUI
                 return;
 
             if (NoteCategoryBox.SelectedItem.ToString() != "All")
-                showNotes = _project.SortedNotes(EnumParser.StringToNoteCategory
+                _showNotes = _project.SortedNotesCategory(EnumParser.StringToNoteCategory
                     (NoteCategoryBox.SelectedItem.ToString()));
             else
-                showNotes = _project.Notes.OrderByDescending(t => t.TimeModified).ToList();
+                _showNotes = _project.SortedNotes();
 
-            foreach (Note t in showNotes)
+            foreach (Note t in _showNotes)
             {
                 ListBoxNote.Items.Add(t.Title);
             }
@@ -234,7 +243,7 @@ namespace NoteAppUI
         /// </summary>
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProjectManager.SaveProject(_project);
+            ProjectManager.SaveProject(_project, _saveFileName);
             Close();
         }
 

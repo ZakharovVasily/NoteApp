@@ -47,9 +47,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 15);
+            this.label1.Size = new System.Drawing.Size(33, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Название:";
+            this.label1.Text = "Title:";
             // 
             // AddButton
             // 
@@ -64,7 +64,7 @@
             // NewTitleTextBox
             // 
             this.NewTitleTextBox.ForeColor = System.Drawing.Color.Black;
-            this.NewTitleTextBox.Location = new System.Drawing.Point(94, 8);
+            this.NewTitleTextBox.Location = new System.Drawing.Point(75, 8);
             this.NewTitleTextBox.Name = "NewTitleTextBox";
             this.NewTitleTextBox.Size = new System.Drawing.Size(359, 20);
             this.NewTitleTextBox.TabIndex = 3;
@@ -83,11 +83,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(12, 40);
+            this.label3.Location = new System.Drawing.Point(11, 35);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 15);
+            this.label3.Size = new System.Drawing.Size(58, 15);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Категория:";
+            this.label3.Text = "Category:";
             // 
             // label4
             // 
@@ -95,14 +95,14 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(12, 78);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 15);
+            this.label4.Size = new System.Drawing.Size(53, 15);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Созданно:";
+            this.label4.Text = "Created:";
             // 
             // NewTimeCreateLabel
             // 
             this.NewTimeCreateLabel.AutoSize = true;
-            this.NewTimeCreateLabel.Location = new System.Drawing.Point(84, 80);
+            this.NewTimeCreateLabel.Location = new System.Drawing.Point(62, 80);
             this.NewTimeCreateLabel.Name = "NewTimeCreateLabel";
             this.NewTimeCreateLabel.Size = new System.Drawing.Size(35, 13);
             this.NewTimeCreateLabel.TabIndex = 7;
@@ -111,7 +111,7 @@
             // NewNoteCategoryBox
             // 
             this.NewNoteCategoryBox.FormattingEnabled = true;
-            this.NewNoteCategoryBox.Location = new System.Drawing.Point(94, 40);
+            this.NewNoteCategoryBox.Location = new System.Drawing.Point(75, 34);
             this.NewNoteCategoryBox.Name = "NewNoteCategoryBox";
             this.NewNoteCategoryBox.Size = new System.Drawing.Size(130, 21);
             this.NewNoteCategoryBox.TabIndex = 8;
@@ -120,16 +120,16 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(348, 80);
+            this.label6.Location = new System.Drawing.Point(347, 78);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 15);
+            this.label6.Size = new System.Drawing.Size(58, 15);
             this.label6.TabIndex = 9;
-            this.label6.Text = "Измененно:";
+            this.label6.Text = "Modified:";
             // 
             // NewTimeModifiedLabel
             // 
             this.NewTimeModifiedLabel.AutoSize = true;
-            this.NewTimeModifiedLabel.Location = new System.Drawing.Point(430, 82);
+            this.NewTimeModifiedLabel.Location = new System.Drawing.Point(403, 80);
             this.NewTimeModifiedLabel.Name = "NewTimeModifiedLabel";
             this.NewTimeModifiedLabel.Size = new System.Drawing.Size(35, 13);
             this.NewTimeModifiedLabel.TabIndex = 10;
