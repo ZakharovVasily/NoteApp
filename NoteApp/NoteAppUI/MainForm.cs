@@ -8,6 +8,11 @@ namespace NoteAppUI
     public partial class MainForm : Form
     {
         /// <summary>
+        /// Поле для хранения пути файла.
+        /// </summary>
+        private readonly string _address = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\NoteApp.json";
+
+        /// <summary>
         /// Обьект класса.
         /// </summary>
         private  static  Project _project = new Project();
@@ -17,19 +22,13 @@ namespace NoteAppUI
         /// </summary>
         private static List<Note> _showNotes;
 
-        /// <summary>
-        /// Поле содержащее путь к сохраняемому документу.
-        /// </summary>
-        private readonly string _saveFileName = @"json.txt";
-
         public MainForm()
         {
             InitializeComponent();
 
-            var openFileName = @"json.txt";
-            if (ProjectManager.OpenProject(openFileName) != null)
+            if (ProjectManager.OpenProject(_address) != null)
             {
-                _project = ProjectManager.OpenProject(openFileName);
+                _project = ProjectManager.OpenProject(_address);
             }
 
             AddCategoryBox();
@@ -87,7 +86,7 @@ namespace NoteAppUI
 
             ShowListBoxNote();
 
-            ProjectManager.SaveProject(_project, _saveFileName);
+            ProjectManager.SaveProject(_project, _address);
         }
 
         /// <summary>
@@ -117,7 +116,7 @@ namespace NoteAppUI
 
             ShowListBoxNote();
 
-            ProjectManager.SaveProject(_project, _saveFileName);
+            ProjectManager.SaveProject(_project, _address);
         }
 
         /// <summary>
@@ -143,7 +142,7 @@ namespace NoteAppUI
 
                 ShowListBoxNote();
 
-                ProjectManager.SaveProject(_project, _saveFileName);
+                ProjectManager.SaveProject(_project, _address);
             }
         }
 
@@ -243,7 +242,7 @@ namespace NoteAppUI
         /// </summary>
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProjectManager.SaveProject(_project, _saveFileName);
+            ProjectManager.SaveProject(_project, _address);
             Close();
         }
 
